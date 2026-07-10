@@ -24,7 +24,7 @@ Este projeto foi fundamental para entender a importância de:
 
 ## 📝 Diário de Aprendizado (Roadmap)
 Aqui registro os conceitos que estou estudando e pretendo implementar:
-- [ ] **Dicionário de Regras:** Refatorar a lógica de vitória usando um dicionário para tornar o jogo mais dinâmico e fácil de manter.
+- [x] **Dicionário de Regras:** Refatorar a lógica de vitória usando um dicionário para tornar o jogo mais dinâmico e fácil de manter.
 - [ ] **Sistema de Placar:** Adicionar contadores de vitórias para tornar o jogo competitivo.
 - [ ] **Validação Robusta:** Melhorar o tratamento de erros para diferentes tipos de entradas inválidas.
 
