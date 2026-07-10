@@ -1,7 +1,28 @@
 import random
 import time
 
-initial_message = f'''
+pedra, papel, tesoura, lagarto, spock = list(range(1, 6))
+
+emoji = {1: '✊', 2: '✋', 3: '✌️', 4: '🦎', 5: '🖖'}
+
+user_victory_message = 'The player won!'
+results = {
+    (tesoura, papel): user_victory_message,
+    (papel, pedra): user_victory_message,
+    (pedra, lagarto): user_victory_message,
+    (lagarto, spock): user_victory_message,
+    (spock, tesoura): user_victory_message,
+    (tesoura, lagarto): user_victory_message,
+    (lagarto, papel): user_victory_message,
+    (papel, spock): user_victory_message,
+    (spock, pedra): user_victory_message,
+    (pedra, tesoura): user_victory_message
+}
+
+
+
+while True:
+    print(f'''
 {32*'='}
 Rock Paper Scissors Lizard Spock
 {32*'='}
@@ -11,34 +32,28 @@ Rock Paper Scissors Lizard Spock
 3) ✌️
 4) 🦎
 5) 🖖
-'''
-
-pedra, papel, tesoura, lagarto, spock = 1, 2, 3, 4, 5
-
-hands = {1: '✊', 2: '✋', 3: '✌️', 4: '🦎', 5: '🖖'}
-
-while True:
-    print(initial_message)
-    cpu_choice = random.choice([1,2,3,4,5])
+''')
     try:
+        cpu_choice = random.choice(list(range(1,6)))
         user_choice = int(input('Pick a number: '))
-        if user_choice in hands.keys():
-            print('JO-KEN-PÔ!!!\n')
-            time.sleep(1)
+        valid_user_choice = 1 <= user_choice <= 5
 
-            print(f'You chose: {hands[user_choice]}')
-            print(f'CPU chose: {hands[cpu_choice]}')
+        if not valid_user_choice:
+            continue
 
-            if cpu_choice == user_choice:
-                print('It\'s a tie')
-            elif user_choice == tesoura and cpu_choice == papel or user_choice == papel and cpu_choice == pedra or user_choice == pedra and cpu_choice == lagarto or user_choice == lagarto and cpu_choice == spock or user_choice == spock and cpu_choice == tesoura or user_choice == tesoura and cpu_choice == lagarto or user_choice == lagarto and cpu_choice == papel or user_choice == papel and cpu_choice == spock or user_choice == spock and cpu_choice == pedra or user_choice == pedra and cpu_choice == tesoura:
-                print('The player won!')
-            else:
-                print('The CPU won!')
+        print('JO-KEN-PÔ!!!\n')
+        time.sleep(1)
+
+        print(f'You chose: {emoji[user_choice]}')
+        print(f'CPU chose: {emoji[cpu_choice]}')
+
+        if cpu_choice == user_choice:
+            print('It\'s a tie')
         else:
-            print('ERROR: INVALID OPTION!')
+            result_message = results.get((user_choice, cpu_choice), 'CPU Won!')
+            print(result_message)
     except ValueError:
-        print('OMG THERE\'S AN ERROR!!!')
+        print('ERROR: Try a number between 1 and 5!')
 
     second_chance = input('\nDo u wanna try again? 1) Yes | 2) No: \n')
     if second_chance == '1':
